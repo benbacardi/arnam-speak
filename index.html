@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>Arnam Speak</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  </head>
+
+  <body style="font-family: sans-serif">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+        <a href="" class="navbar-brand">Arnam Speak</a>
+      </div>
+    </nav>
+
+    <div class="container pt-4">
+
+      <textarea class="form-control" id="speak" rows="10" cols="100" style="font-family: sans-serif">I'll keep you floating, and watch your back… and see what we can do about that map problem while I'm at it.
+
+The sea's a dangerous place at the bets of times, and where we're going we don't know her so well.
+
+A crew's got to work together if we're going stay above the waves, and handle whatever comes our way. No place for ego, or overconfidence out there. You're going to learn your new crew, who can be trusted for what... we're in one another's hands out there. The fun."
+
+Cap'n's been mighty gen'rous, I su'gest ya consider what ya might be needin' fer the next few weeks t' do what y'll need t' do, an' get it.  This'll help, but it won' go far among all a' us.
+
+Captain's been mighty generous, I suggest you consider what you might be needing for th next few weeks to do what you'll need to do, and get it. This'll help, but it won't go far among all of us.
+
+      </textarea>
+
+      <button class="btn btn-primary my-3" id="translate">Translate!</button>
+
+      <textarea class="form-control" id="result" rows="10" cols="100" style="font-family: sans-serif"></textarea>
+
+    </div>
+
+    <script>
+
+      Array.prototype.random = function () {
+        return this[Math.floor((Math.random()*this.length))];
+      }
+
+      let replacements = [
+        {
+          "match": /\bthe\b/i,
+          "replace": [
+            "th'",
+            "t'",
+          ]
+        },
+        {
+          "match": /'t\b/i,
+          "replace": ["'"]
+        },
+        {
+          "match": /\byou'll\b/i,
+          "replace": ["y'll"]
+        },
+        {
+          "match": /\byou all\b/i,
+          "replace": ["y'all"]
+        },
+        {
+          "match": /\bwant to\b/i,
+          "replace": ["wanna"]
+        },
+        {
+          "match": /\bcaptain\b/i,
+          "replace": ["cap'n"]
+        },
+        {
+          "match": /\byou're\b/i,
+          "replace": ["yer"]
+        },
+        {
+          "match": /\byou\b/i,
+          "replace": ["ya"]
+        },
+        {
+          "match": /\byour\b/i,
+          "replace": ["yer"]
+        },
+        {
+          "match": /\band\b/i,
+          "replace": ["an'"]
+        },
+        {
+          "match": /\bcan\b/i,
+          "replace": ["c'n"]
+        },
+        {
+          "match": /\babout\b/i,
+          "replace": ["'bout"]
+        },
+        {
+          "match": /\bthat\b/i,
+          "replace": ["tha'"]
+        },
+        {
+          "match": /\bif(?!')\b/i,
+          "replace": ["if'n"]
+        },
+        {
+          "match": /\bi'm\b/i,
+          "replace": ["'m"]
+        },
+        {
+          "match": /\bat\b/i,
+          "replace": ["a'"]
+        },
+        {
+          "match": /\bof\b/i,
+          "replace": ["a'"]
+        },
+        {
+          "match": /\bher\b/i,
+          "replace": ["'er"]
+        },
+        {
+          "match": /\bdon't\b/i,
+          "replace": ["don'"]
+        },
+        {
+          "match": /\bgot to\b/i,
+          "replace": ["gotta"]
+        },
+        {
+          "match": /\bgoing to\b/i,
+          "replace": ["gonna"]
+        },
+        {
+          "match": /ing\b/i,
+          "replace": ["in'"]
+        },
+        {
+          "match": /\bwhatever\b/i,
+          "replace": ["wh'ever"]
+        },
+        {
+          "match": /\bwhat\b/i,
+          "replace": ["wha'"]
+        },
+        {
+          "match": /\bour\b/i,
+          "replace": ["ar"]
+        },
+        {
+          "match": /\bover/i,
+          "replace": ["o'er"]
+        },
+        {
+          "match": /\bout\b/i,
+          "replace": ["ou'"]
+        },
+        {
+          "match": /\bto\b/i,
+          "replace": ["t'"]
+        },
+        {
+          "match": /\bgenerous\b/i,
+          "replace": ["gen'rous"]
+        },
+        {
+          "match": /\bsuggest\b/i,
+          "replace": ["su'gest"]
+        },
+        {
+          "match": /\bfor\b/i,
+          "replace": ["fer"]
+        },
+      ]
+
+      document.getElementById('translate').onclick = function (e) {
+        let input = document.getElementById('speak').value.trim();
+        console.log(input);
+        for (const repl of replacements) {
+          console.log("Handling " + repl.match);
+          while (true) {
+            old = input;
+            input = input.replace(repl.match, repl.replace.random());
+            if (old == input) {
+              break
+            }
+          }
+        }
+        // input = input.replace(/\. ([a\-z])/, function(v) { return v.toUpperCase(); });
+        // input = input.replace(/\n/g, '<br /');
+        document.getElementById('result').innerHTML = input;
+      }
+
+    </script>
+
+  </body>
+
+</html>
