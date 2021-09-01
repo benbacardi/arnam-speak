@@ -19,8 +19,7 @@
 
     <div class="container pt-4">
 
-      <textarea class="form-control" id="speak" rows="10" cols="100" style="font-family: sans-serif">
-      </textarea>
+      <textarea class="form-control" id="speak" rows="10" cols="100" style="font-family: sans-serif">That will</textarea>
 
       <button class="btn btn-primary my-3" id="translate">Translate!</button>
 
@@ -47,6 +46,14 @@
           "replace": ["'"]
         },
         {
+          "match": /\bregular\b/i,
+          "replace": ["reg'ler"]
+        },
+        {
+          "match": /\bappreciated\b/i,
+          "replace": ["'preciated"]
+        },
+        {
           "match": /\byou'll\b/i,
           "replace": ["y'll"]
         },
@@ -57,6 +64,10 @@
         {
           "match": /\bwant to\b/i,
           "replace": ["wanna"]
+        },
+        {
+          "match": /\bthat will\b/i,
+          "replace": ["tha'll"]
         },
         {
           "match": /\bcaptain\b/i,
@@ -76,11 +87,11 @@
         },
         {
           "match": /\band\b/i,
-          "replace": ["an'"]
+          "replace": ["an'", "n'"]
         },
         {
           "match": /\bcan\b/i,
-          "replace": ["c'n"]
+          "replace": ["c'n", "can"]
         },
         {
           "match": /\babout\b/i,
@@ -162,6 +173,10 @@
           "match": /\bfor\b/i,
           "replace": ["fer"]
         },
+        {
+          "match": /\swill\b/i,
+          "replace": ["'ll"]
+        },
       ]
 
       document.getElementById('translate').onclick = function (e) {
@@ -177,8 +192,7 @@
             }
           }
         }
-        // input = input.replace(/\. ([a\-z])/, function(v) { return v.toUpperCase(); });
-        // input = input.replace(/\n/g, '<br /');
+        input = input.replace(/(^|\.\s+)([a-z])/gm, function(v) { console.log(v); return v.toUpperCase(); });
         document.getElementById('result').innerHTML = input;
       }
 
