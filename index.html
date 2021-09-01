@@ -46,6 +46,18 @@
           "replace": ["'"]
         },
         {
+          "match": /\b([a-z]+)ttle([a-z]*)\b/i,
+          "replace": ["$1'tle$2"]
+        },
+        {
+          "match": /\bget\b/i,
+          "replace": ["get", "git"]
+        },
+        {
+          "match": /\bfigure\b/i,
+          "replace": ["figger"]
+        },
+        {
           "match": /\bregular\b/i,
           "replace": ["reg'ler"]
         },
@@ -96,6 +108,10 @@
         {
           "match": /\babout\b/i,
           "replace": ["'bout"]
+        },
+        {
+          "match": /\bthat's\b/i,
+          "replace": ["thas"]
         },
         {
           "match": /\bthat\b/i,
